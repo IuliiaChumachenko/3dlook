@@ -1,0 +1,8 @@
+<main class="product-content">
+  <app-product-item *ngFor="let item of categoryItems"
+                    class="product-content__item"
+                    [productItem]="item"
+                    (mouseleave)="unselectItem(item)"
+                    (mouseover)="selectItem(item)">
+  </app-product-item>
+</main>

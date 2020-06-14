@@ -1,0 +1,29 @@
+<div class="product-item">
+  <img [attr.src]="'../../../../assets/images/' + backgroundPic" class="product-item__photo">
+
+  <div *ngIf="productItem.selected" class="carousel">
+    <svg class="carousel__arrow"
+         (click)="carouselToLeft(isLeftArrowAvailable)"
+         width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.13573 0.959625L1.04039 6.54768L6.13573 12.1357" [attr.stroke]="isLeftArrowAvailable ? 'black' : '#F0F0F0'"/>
+    </svg>
+    <img class="carousel__pic"
+         *ngFor="let key of defaultPicsIndexes"
+         [attr.src]="'../../../../assets/images/' + productItem?.photos[key]"
+         (click)="selectPic(key)"
+         [ngClass]="{'carousel__pic--selected': key === productItem.photos.indexOf(backgroundPic)}">
+    <svg class="carousel__arrow"
+         (click)="carouselToRight(isRightArrowAvailable)"
+         width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.04037 0.959625L6.13571 6.54768L1.04037 12.1357" [attr.stroke]="isRightArrowAvailable ? 'black' : '#F0F0F0'"/>
+    </svg>
+
+  </div>
+
+  <div class="info">
+    <div class="info__category">{{ productItem?.category }}</div>
+    <div class="info__name">{{ productItem?.name }}</div>
+    <div class="info__price">{{ '$ ' + productItem?.price }}</div>
+    <div class="info__count">{{ 'На складе: ' + productItem?.count }}</div>
+  </div>
+</div>

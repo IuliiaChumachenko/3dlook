@@ -1,0 +1,25 @@
+<aside class="container">
+  <div class="nav">
+    <div class="nav__item" *ngFor="let item of menuItems" (click)="selectCategory(item)" [ngClass]="{'_selected': item.selected}">{{ item.name }}</div>
+  </div>
+
+  <div class="filters">
+    <div class="filters__title" (click)="isFiltersOpen = !isFiltersOpen">
+      Сортировать
+      <svg *ngIf="!isFiltersOpen; else filtersOpen" class="filters-icon" width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L6.5 6L12 1" stroke="black"/>
+      </svg>
+      <ng-template #filtersOpen>
+        <svg class="filters__icon" width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 6.09534L6.58805 1L12.1761 6.09534" stroke="black"/>
+        </svg>
+      </ng-template>
+    </div>
+    <div *ngIf="isFiltersOpen" class="filters__container">
+      <div class="filters__item"
+           [ngClass]="{'filters__item--selected': item.selected}"
+           *ngFor="let item of filterItems"
+           (click)="selectFilter(item)">{{ item.name }}</div>
+    </div>
+  </div>
+</aside>
